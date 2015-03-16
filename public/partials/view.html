@@ -1,0 +1,58 @@
+<div ng-controller="ReadVesselCtrl as readVessel">
+    <div>
+        <div class="form-group">
+            <h3>
+                Vessels
+                <a ng-href="/#/vessels/create" class="btn btn-primary pull-right" id="btn_vessel_create">Add Vessel</a>
+            </h3>
+            <hr>
+        </div>
+        <div class="form-group">
+            <input class="form-control" type="text" ng-model="searchText" placeholder="Type here to filter vessels...">
+            <hr>
+        </div>
+
+        <table id="vessel_list" class="table table-striped">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Width [m]</th>
+                <th>Length [m]</th>
+                <th>Draft [m]</th>
+                <th>Latitude [°]</th>
+                <th>Longitude [°]</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="vessel in readVessel.vessels | filter:searchText">
+                <td>
+                    {{ vessel.name }}
+                </td>
+                <td>
+                    {{ vessel.width | number:2}}
+                </td>
+                <td>
+                    {{ vessel.length | number:2 }}
+                </td>
+                <td>
+                    {{ vessel.draft | number:2 }}
+                </td>
+                <td>
+                    {{ vessel.latitude | number:4 }}
+                </td>
+                <td>
+                    {{ vessel.longitude | number:4 }}
+                </td>
+                <td>
+                    <a ng-href="/#/vessels/edit/{{vessel.name}}" class="btn btn-success pull-right" id="btn_vessel_update">Edit Vessel</a>
+                </td>
+            </tr>
+            <tr ng-hide="readVessel.vessels.length">
+                <td colspan="6">
+                    <p class="text-center">No vessels found</p>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

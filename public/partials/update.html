@@ -1,0 +1,70 @@
+<div ng-controller="UpdateVesselCtrl as updateVessel">
+    <h1>Edit Vessel</h1>
+
+    <form id="UpdateVesselForm" name="UpdateVesselForm" class="form-horizontal" role="form"
+          ng-submit="updateVessel.updateVessel()" novalidate>
+        <legend class="sm-col-12">Vessel Information</legend>
+
+        <div class="form-group">
+            <label id="lbl_name" for="name" class="col-sm-4 control-label">Name</label>
+
+            <div class="col-sm-8">
+                <input type="text" class="form-control" name="name" id="name" placeholder=""
+                       ng-model="updateVessel.vessel.name" required>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label id="lbl_width" for="width" class="col-sm-4 control-label">Width [m]</label>
+
+            <div class="col-sm-8">
+                <input type="number" class="form-control" name="width" id="width" placeholder=""
+                       ng-model="updateVessel.vessel.width" min=1 required>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label id="lbl_length" for="length" class="col-sm-4 control-label">Length [m]</label>
+
+            <div class="col-sm-8">
+                <input type="number" class="form-control" name="length" id="length" placeholder=""
+                       ng-model="updateVessel.vessel.length" min=1 required>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label id="lbl_draft" for="draft" class="col-sm-4 control-label">Draft [m]</label>
+
+            <div class="col-sm-8">
+                <input type="number" class="form-control" name="draft" id="draft" placeholder=""
+                       ng-model="updateVessel.vessel.draft" min=1 required>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label id="lbl_latitude" for="latitude" class="col-sm-4 control-label">Latitude [°]</label>
+
+            <div class="col-sm-8">
+                <input type="number" class="form-control" name="latitude" id="latitude" placeholder=""
+                       ng-model="updateVessel.vessel.latitude" min=-90 max=90 required>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label id="lbl_longitude" for="longitude" class="col-sm-4 control-label">Longitude [°]</label>
+
+            <div class="col-sm-8">
+                <input type="number" class="form-control" name="width" id="longitude" placeholder=""
+                       ng-model="updateVessel.vessel.longitude" min=-180 max=180 required>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-offset-4 col-sm-8 text-right">
+                <a ng-href="/#/" id="btn_cancel" class="btn btn-warning">Cancel</a>
+                <button type="button" class="btn btn-danger" id="btn_delete" ng-click="updateVessel.deleteVessel()">Delete Vessel</button>
+                <button type="submit" class="btn btn-success" id="btn_create">Update Vessel</button>
+            </div>
+        </div>
+    </form>
+</div>
