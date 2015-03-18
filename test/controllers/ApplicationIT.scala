@@ -23,7 +23,8 @@ class ApplicationIT extends Specification {
       running(FakeApplication()) {
         val home = route(FakeRequest(GET, "/")).get
         status(home) must equalTo(OK)
-        contentType(home) must beSome.which(_ == "text/html")
+        contentType(home) must beSome("text/html")
+        contentAsString(home) must contain("Vessel Webapp")
       }
     }
 

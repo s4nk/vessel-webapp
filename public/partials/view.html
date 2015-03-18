@@ -16,11 +16,11 @@
             <thead>
             <tr>
                 <th>Name</th>
-                <th>Width [m]</th>
-                <th>Length [m]</th>
-                <th>Draft [m]</th>
-                <th>Latitude [°]</th>
-                <th>Longitude [°]</th>
+                <th class="text-right">Width [m]</th>
+                <th class="text-right">Length [m]</th>
+                <th class="text-right">Draft [m]</th>
+                <th class="text-right">Latitude [°]</th>
+                <th class="text-right">Longitude [°]</th>
             </tr>
             </thead>
             <tbody>
@@ -28,19 +28,19 @@
                 <td>
                     {{ vessel.name }}
                 </td>
-                <td>
+                <td class="text-right">
                     {{ vessel.width | number:2}}
                 </td>
-                <td>
+                <td class="text-right">
                     {{ vessel.length | number:2 }}
                 </td>
-                <td>
+                <td class="text-right">
                     {{ vessel.draft | number:2 }}
                 </td>
-                <td>
+                <td class="text-right">
                     {{ vessel.latitude | number:4 }}
                 </td>
-                <td>
+                <td class="text-right">
                     {{ vessel.longitude | number:4 }}
                 </td>
                 <td>
