@@ -4,6 +4,8 @@ version := "0.1-SNAPSHOT"
 
 scalaVersion := "2.11.4"
 
+scalacOptions += "-target:jvm-1.7"
+
 lazy val root = (project in file(".")).enablePlugins(PlayScala)
 
 resolvers += "Sonatype Snapshots" at "https://oss.sonatype.org/content/repositories/snapshots/"
