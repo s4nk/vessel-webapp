@@ -27,12 +27,7 @@ class Vessels extends Controller with MongoController {
    */
   def collection: JSONCollection = db.collection[JSONCollection]("vessels")
 
-  // ------------------------------------------ //
-  // Using case classes + Json Writes and Reads //
-  // ------------------------------------------ //
-
   import models._
-  import models.JsonFormats._
 
   def createVessel = Action.async(parse.json) {
     request =>
@@ -45,13 +40,14 @@ class Vessels extends Controller with MongoController {
      */
       request.body.validate[Vessel].map {
         vessel =>
-        // `vessel` is an instance of the case class `models.Vessel`
           collection.insert(vessel).map {
             lastError =>
               logger.debug(s"Successfully inserted with LastError: $lastError")
               Created(s"Vessel Created")
           }
-      }.getOrElse(Future.successful(BadRequest("Invalid JSON")))
+      }.recoverTotal { error =>
+        Future.successful(BadRequest("Invalid JSON: " + JsError.toFlatJson(error)))
+      }
   }
 
   def updateVessel(name: String) = Action.async(parse.json) {
@@ -65,7 +61,9 @@ class Vessels extends Controller with MongoController {
               logger.debug(s"Successfully updated with LastError: $lastError")
               Ok(s"Vessel Updated")
           }
-      }.getOrElse(Future.successful(BadRequest("Invalid JSON")))
+      }.recoverTotal { error =>
+        Future.successful(BadRequest("Invalid JSON: " + JsError.toFlatJson(error)))
+      }
   }
 
   def deleteVessel(name: String) = Action.async {
@@ -98,5 +96,4 @@ class Vessels extends Controller with MongoController {
         Ok(vessels(0))
     }
   }
-
 }
